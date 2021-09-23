@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { actionCreators } from "../store";
+import { delTodo } from "../store";
 
 let did = 0;
 const Detail = ({ todo, todos, onBtnClick }) => {
@@ -27,8 +27,8 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  onBtnClick: () => dispatch(actionCreators.delTodo(did)),
+const mapDispatchToProps = (dispatch) => ({
+  onBtnClick: () => dispatch(delTodo(did)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Detail);
