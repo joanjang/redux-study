@@ -7,7 +7,6 @@ Learning Vanilla-Redux and React-Redux
 > 1. COUNTER
 > 2. TO DO LIST
 
-<br>
 ## react
 
 > 1. TO DO LIST
