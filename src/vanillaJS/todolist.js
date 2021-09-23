@@ -7,6 +7,9 @@ const ul = document.querySelector("ul");
 const ADD_TODO = "ADD_TODO";
 const DELETE_TODO = "DELETE_TODO";
 
+const addTodo = text => ({ type: ADD_TODO, text });
+const delTodo = id => ({ type: DELETE_TODO, id });
+
 const reducer = ( state = [], action ) => {
     const { type, text, id: id1 } = action;
     switch( type ) {
@@ -38,12 +41,12 @@ const handleTodoSubmit = event => {
     event.preventDefault();
     const todo = input.value;
     input.value = "";
-    store.dispatch( { type: ADD_TODO, text: todo } );
+    store.dispatch( addTodo(todo) );
 }
 
 const handleTodoDelete = event => {
     const id = event.target.parentNode.id;
-    store.dispatch( { type: DELETE_TODO, id });
+    store.dispatch( delTodo(id) );
 }
 
 const store = createStore( reducer );
