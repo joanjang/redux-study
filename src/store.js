@@ -1,18 +1,18 @@
 import { createStore } from "redux";
+import { createAction } from "@reduxjs/toolkit";
 
-const ADD_TODO = "ADD_TODO";
-const DELETE_TODO = "DELETE_TODO";
-
-const addTodo = (text) => ({ type: ADD_TODO, text });
-const delTodo = (id) => ({ type: DELETE_TODO, id });
+const addTodo = createAction("ADD_TODO");
+const delTodo = createAction("DELETE_TODO");
 
 const reducer = (state = [], action) => {
-  const { type, text, id: aid } = action;
+  // toolkit 사용시 action의 props는 type과 payload 뿐
+  const { type, payload } = action;
+  console.log(action);
   switch (type) {
-    case ADD_TODO:
-      return [{ id: Date.now(), text }, ...state];
-    case DELETE_TODO:
-      return state.filter(({ id }) => id !== +aid);
+    case addTodo.type:
+      return [{ id: Date.now(), text: payload }, ...state];
+    case delTodo.type:
+      return state.filter(({ id }) => id !== +payload);
     default:
       return state;
   }
